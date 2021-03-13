@@ -1,0 +1,81 @@
+.hero-section {
+    background: url("Header-NBAJam-Style.jpg") 50% no-repeat;
+    background-size: cover;
+    height: 50vh;
+    text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  .hero-section .hero-section-text {
+    color: #fefefe;
+    text-shadow: 1px 1px 2px #0a0a0a;
+  }
+  
+  .teams-container {
+      width:100;
+
+  }
+  .team01 {
+      background: url("https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg") 50% no-repeat;
+      background-size: cover;
+      background-color:#ffffff;;
+      padding: 5px;
+      width:50%;
+      float:left;
+      height: 100px;
+      }
+      
+      .team02 {
+        background: url("https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg") 50% no-repeat;
+        background-size: cover;
+        background-color: #ffffff;
+        padding: 5px;
+        width:50%;
+        float:left;
+        height: 100px;
+      }
+
+      .game-info {
+        text-align:center;
+      }
+
+
+      .odds-container {
+          width: 100%;
+          background-color: gray;
+          padding: 5px;
+          text-align: center;
+          color: #ffffff;
+          font-weight: 500;
+      }
+
+ .sportsbook-01, .sportsbook-02, .sportsbook-03 {
+     border: solid 1px #ffffff;
+ }
+
+ a {
+     color: #ffffff;
+     font-weight: 800;
+ }
+
+ a:hover {
+     color: red;
+ }
+
+ .button {
+     color: #ffffff;
+     background-color: red;
+     font-weight: bolder;
+ }
+
+.button:hover {
+    background-color: brown;
+}
