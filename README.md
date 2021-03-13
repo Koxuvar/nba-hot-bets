@@ -1,7 +1,7 @@
-# NBA HOT BETS: 
+# NBA HOT BETS
 NBA Hot Bets: One-Stop Shop for NBA Betting Odds
 
-# DESCRIPTION:
+## DESCRIPTION:
 NBA Hot Bets is a sports betting resource for live NBA Games. NBA Hot Bets will include the best odds, live scoring and stat updates and suggested online sportsbooks to capitalize on the most favorable odds.
 
 # USER STORY
