@@ -11,13 +11,13 @@ NBA Hot Bets is a sports betting resource for live NBA Games. NBA Hot Bets will 
 - SO I can make the best most informed bet
 
 ## TASKS
-Connor - JS 
-Alex - CSS/HTML
-Solomon - Presentation/Organization/HTML
+- Connor, JS 
+- Alex, CSS/HTML
+- Solomon, Presentation/Organization/HTML
 
 ## APIS USED
-BallDontLie API (https://www.balldontlie.io/#introduction)
-The Odds API: Sports Odds API - nbasense - API-NBA® | The Best NBA API (for Developers) 
+The Odds API: Sports Odds API
+- Data.NBA.net (http://nbasense.com/nba-api/)
 
 ## GITHUB REPO
 https://www.github.com/koxuvar/nba-hot-bets
