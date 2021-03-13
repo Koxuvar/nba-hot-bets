@@ -10,10 +10,10 @@ I WANT to be able to use this app to figure out the best NBA betting odds
 AND THEN I want it to tell me what are the best sportsbook sites
 SO I can make the best most informed bet
 
-## Tasks
+## TASKS
 Connor - JS 
 Alex - CSS/HTML
-Solomon - Presentation/Organization/CSS
+Solomon - Presentation/Organization/HTML
 
 ## APIS USED
 balldontlie API - The Odds API: Sports Odds API - nbasense - API-NBA® | The Best NBA API (for Developers) 
