@@ -1,8 +1,8 @@
 // pseudo code goes here
 
-// --------------------------------------- OBJECTIVES ---------------------------------------//
+// --------------------------------------- index.html ---------------------------------------//
 
-/*
+/*  
    
     -get games - function getGames()
     -create object per game
@@ -19,6 +19,20 @@
                 logo:"./assets/images/logo"
             },
             gameDate:"March 15. 2021",
+            gameOdds:{
+                siteName:"sportsbets",
+                sitePretty:"Sports Bets",
+                odds:122-55
+            },
+            getOdds:function()
+                {
+                    go to api and get odds for things
+                },
+            updateScore: function()
+                {
+                    go to api and get score for this game
+                },
+            
             ...
 
         }
@@ -26,24 +40,8 @@
     -on click of game:
         get odds for that game
         serve those to new page - location
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 */
+
+// --------------------------------------- odds-page.html ---------------------------------------//
+
