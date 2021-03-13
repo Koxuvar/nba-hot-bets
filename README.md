@@ -16,7 +16,8 @@ Alex - CSS/HTML
 Solomon - Presentation/Organization/HTML
 
 ## APIS USED
-balldontlie API - The Odds API: Sports Odds API - nbasense - API-NBA® | The Best NBA API (for Developers) 
+BallDontLie API (https://www.balldontlie.io/#introduction)
+The Odds API: Sports Odds API - nbasense - API-NBA® | The Best NBA API (for Developers) 
 
 ## GITHUB REPO
 https://www.github.com/koxuvar/nba-hot-bets
