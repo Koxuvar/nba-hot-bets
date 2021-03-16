@@ -7,7 +7,7 @@ let betterData = [];
 
 function getApi()
 {
-    var requestURL = 'https://data.nba.net/prod/v1/20210313/scoreboard.json'
+    var requestURL = 'https://data.nba.net/prod/v1/20210315/scoreboard.json'
 
     fetch(requestURL)
         .then(function (response)
@@ -118,7 +118,7 @@ function displayGames()
             hTeamScoreEl.setAttribute('class', 'score');
 
             let hTeamContainer = document.createElement('div');
-            hTeamContainer.setAttribute('class','visiting-team');
+            hTeamContainer.setAttribute('class','home-team');
             hTeamContainer.appendChild(hTeamNameEl);
             hTeamContainer.appendChild(hTeamLogoEl);
             hTeamContainer.appendChild(hTeamRecordEl);
