@@ -18,49 +18,8 @@
     color: #fefefe;
     text-shadow: 1px 1px 2px #0a0a0a;
   }
-  
-  .teams-container {
-      width:100;
 
-  }
-  .team01 {
-      background: url("https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg") 50% no-repeat;
-      background-size: cover;
-      background-color:#ffffff;;
-      padding: 5px;
-      width:50%;
-      float:left;
-      height: 100px;
-      }
-      
-      .team02 {
-        background: url("https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg") 50% no-repeat;
-        background-size: cover;
-        background-color: #ffffff;
-        padding: 5px;
-        width:50%;
-        float:left;
-        height: 100px;
-      }
-
-      .game-info {
-        text-align:center;
-      }
-
-
-      .odds-container {
-          width: 100%;
-          background-color: gray;
-          padding: 5px;
-          text-align: center;
-          color: #ffffff;
-          font-weight: 500;
-      }
-
- .sportsbook-01, .sportsbook-02, .sportsbook-03 {
-     border: solid 1px #ffffff;
- }
-
+/****************  Navigation ****************/
  a {
      color: #ffffff;
      font-weight: 800;
@@ -79,3 +38,58 @@
 .button:hover {
     background-color: brown;
 }
+
+/****************  Todays Games ****************/
+
+.teams-container {
+    display:flex;
+}
+.visiting-team {
+    width: 33%;
+    line-height: 0;
+    text-align: center;
+}
+
+.timer-section {
+    width: 33%;
+    text-align: center;
+}
+
+.game-timer {
+    font-size: 1em;
+    text-size-adjust: 10%;
+}
+
+.home-team {
+    width: 33%;
+    line-height: 0;
+    text-align: center;
+}
+
+.card {
+    padding: 10px;
+}
+
+h1, h2, p {
+    font-family: 'Kanit', sans-serif;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+h1.team-name {
+    font-size: 2em;
+    font-weight: 700;
+    line-height: 0;
+}
+
+.score {
+    background-color: #ededed;
+}
+
+
