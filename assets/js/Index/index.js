@@ -2,12 +2,57 @@ let gameContainer = document.getElementById('todayGames');
 
 let betterData = [];
 
+/**
+ * Get the current date using moment.js
+ * formats to the req from the nba api which is YYYYMMDD
+ */
+let todaysDate = moment().format('YYYYMMDD');
 
 
-
-function getApi()
+/**
+ * clearNodes
+ * utility function to clear all children of a given html element
+ * @param {parent} the parent HTML element that will have all its children removed from
+ */
+function clearNodes(parent)
 {
-    var requestURL = 'https://data.nba.net/prod/v1/20210315/scoreboard.json'
+    while(parent.firstChild)
+    {
+        parent.removeChild(parent.firstChild);
+    }
+    return;
+}
+
+/**
+ * getApi()
+ * requests the current scoreboard from data.nba.net for the date provided.
+ * stores information into {betterData} as an array of objects where each object is one game from the day.
+ * returns the array betterData
+ * 
+ * @param {date} - string - the date given as a string to the api to get the games score and other data for that day.
+ * 
+ * example return object - 
+ * {
+ *  homeTeam:OKC,
+ *  homeTeamScore:81,
+ *  homeTeamRecordWins:21,
+ *  homeTeamRecordLoses:10,
+ *  visitingTeam:NYK,
+ *  visitingTeamScore:97,
+ *  visitingTeamRecordWins:10,
+ *  visitingTeamRecordLoses:12,
+ *  period:3,
+ *  isHalftime:false,
+ *  isEndOfPeriod:true,
+ *  gameId:201351246512, --defined by the NBA
+ *  startTime:7:00 PM ET,
+ *  gameTime:11:15
+ * }
+ * 
+ */
+function getApi(date)
+{
+    var requestURL = 'https://data.nba.net/prod/v1/' + date + '/scoreboard.json'
 
     fetch(requestURL)
         .then(function (response)
@@ -17,8 +62,10 @@ function getApi()
                 response.json()
                         .then(function (data)
                         {
+                            betterData = [];
                             data.games.forEach( e => 
                             { 
+                                
                                 betterData.push(
                                 {
                                     homeTeam:e.hTeam.triCode,
@@ -34,20 +81,31 @@ function getApi()
                                     isEndOfPeriod:e.period.isEndOfPeriod,
                                     gameId:e.gameId,
                                     startTime:e.startTimeEastern,
+                                    gameTime:e.clock
                                 });
                             });
 
-                            displayGames();
+                            displayGames(betterData);
+                            return betterData;
                             
                         });
             }
         });
 }
 
-function displayGames()
+/**
+ * displayGames()
+ * takes array of objects with data about games and creates elements on the DOM.
+ * 
+ * @param {arrGameData} - Array - An array of objects iterated over that will then be displayed
+ * 
+ * !ISSUE images functionality temporarily commented out until images folder is implemented with logos
+ */
+function displayGames(arrGameData)
 {
+    clearNodes(gameContainer);
 
-    betterData.forEach(e =>
+    arrGameData.forEach(e =>
         {
             //------------------Visiting Team------------------//
             let vTeamNameEl = document.createElement('h1');
@@ -69,17 +127,15 @@ function displayGames()
             vTeamContainer.appendChild(vTeamRecordEl);
             vTeamContainer.appendChild(vTeamScoreEl);
 
-
-
             //------------------timer------------------//
             let gameTimerEl = document.createElement('h2');
             gameTimerEl.innerHTML = e.gameTime;
             gameTimerEl.setAttribute('class','game-timer');
             
             let gamePeriodEl = document.createElement('h3');
-            if(!e.isEndOfPeriod && !e.isHalftime)
+            if(!e.isEndOfPeriod && !e.isHalftime && e.gameTime != "")
             {
-                gamePeriodEl.innerHTML = e.period;
+                gamePeriodEl.innerHTML = 'Period\n' + e.period;
             }
             else if (!e.isHalftime && e.isEndOfPeriod)
             {
@@ -92,17 +148,13 @@ function displayGames()
             else
             {
                 gamePeriodEl.innerHTML = '';
-                gameTimerEl.innerHTML = 'END';
+                gameTimerEl.innerHTML = 'Final';
             }
 
             let timeEl = document.createElement('div');
             timeEl.setAttribute('class','timer-section');
             timeEl.appendChild(gameTimerEl);
             timeEl.appendChild(gamePeriodEl);
-
-
-            
-
             
             //------------------Home Team------------------//
             let hTeamNameEl = document.createElement('h1');
@@ -117,6 +169,7 @@ function displayGames()
             hTeamScoreEl.innerHTML = e.homeTeamScore;
             hTeamScoreEl.setAttribute('class', 'score');
 
+            //------------------Card and Styling Elements------------------//
             let hTeamContainer = document.createElement('div');
             hTeamContainer.setAttribute('class','home-team');
             hTeamContainer.appendChild(hTeamNameEl);
@@ -138,31 +191,22 @@ function displayGames()
             cardEl.setAttribute('class','card');
             cardEl.appendChild(cardSectionEl);
 
-            let cellEl = document.createElement('div');
-            cellEl.setAttribute('class','cell');
+            let cellEl = document.createElement('a');
+            cellEl.setAttribute('class',' card-link cell');
             cellEl.appendChild(cardEl);
 
             gameContainer.appendChild(cellEl);
         })
-    
-        
-        
-
-
 }
+getApi(todaysDate);
 
 
-
-function sortGames(data)
+setInterval(function()
 {
-    let numGames = data.numGames;
+    getApi(todaysDate);
+}, 1000);
 
-    for(var i = 0; i < numGames; i++)
+gameContainer.addEventListener('click', e =>
     {
-        console.log(data.games[i]);
-    }
-}
-
-getApi();
-
-console.log(betterData);
+        console.log(e);
+    });
