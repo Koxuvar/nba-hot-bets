@@ -112,8 +112,8 @@ function displayGames(arrGameData)
             vTeamNameEl.innerHTML = e.visitingTeam;
             vTeamNameEl.setAttribute('class', 'team-name');
             let vTeamLogoEl = document.createElement('img');
-            // let logoLink = './images/logos/' + e.visitingTeam + '.png';
-            // vTeamLogoEl.setAttribute('src', logoLink);
+            let logoLink = './assets/images/logos/' + e.visitingTeam + '.png';
+            vTeamLogoEl.setAttribute('src', logoLink);
             let vTeamRecordEl = document.createElement('p');
             vTeamRecordEl.innerHTML = e.visitingTeamRecordWins + ' - ' + e.visitingTeamRecordLoses;
             let vTeamScoreEl = document.createElement('h1');
@@ -161,8 +161,8 @@ function displayGames(arrGameData)
             hTeamNameEl.innerHTML = e.homeTeam;
             hTeamNameEl.setAttribute('class', 'team-name');
             let hTeamLogoEl = document.createElement('img');
-            // logoLink = './images/logos/' + e.homeTeam + '.png';
-            // hTeamLogoEl.setAttribute('src', logoLink);
+            logoLink = './assets/images/logos/' + e.homeTeam + '.png';
+            hTeamLogoEl.setAttribute('src', logoLink);
             let hTeamRecordEl = document.createElement('p');
             hTeamRecordEl.innerHTML = e.homeTeamRecordWins + ' - ' + e.homeTeamRecordLoses;
             let hTeamScoreEl = document.createElement('h1');
@@ -224,4 +224,3 @@ function getGame(t)
     }
 }
 
-console.log(apiKey);
