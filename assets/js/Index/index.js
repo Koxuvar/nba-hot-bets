@@ -203,10 +203,10 @@ function displayGames(arrGameData)
 getGamesApi(todaysDate);
 
 
-// setInterval(function()
-// {
-//     getApi(todaysDate);
-// }, 10000);
+setInterval(function()
+{
+    getApi(todaysDate);
+}, 10000);
 
 function getGame(t)
 {
