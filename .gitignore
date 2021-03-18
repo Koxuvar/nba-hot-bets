@@ -97,6 +97,7 @@ Thumbs.db
 *.der
 *.key
 *.pem
+creds.js
 
 # --------------------------------------------------------
 # BEGIN Explictly Allowed Files (i.e. do NOT ignore these)
