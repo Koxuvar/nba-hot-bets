@@ -1,5 +1,5 @@
 .hero-section {
-    background: url("./assets/images/Header-NBAJam-Style.jpg") 50% no-repeat;
+    background-image: url("./assets/images/Header-NBAJam-Style.jpg") 50% no-repeat;
     background-size: cover;
     height: 50vh;
     text-align: center;
@@ -78,8 +78,13 @@ h2 {
     margin-bottom: 0;
 }
 
+h3 {
+    font-size: .7em;
+}
+
 p {
     margin-bottom: 0;
+
 }
 
 h1.team-name {
@@ -91,5 +96,12 @@ h1.team-name {
 .score {
     background-color: #ededed;
 }
+
+img {
+    width: 200px;
+   height: auto;
+   padding: 10px;
+}
+
 
 
