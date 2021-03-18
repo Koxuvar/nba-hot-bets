@@ -24,7 +24,7 @@ function clearNodes(parent)
 }
 
 /**
- * getApi()
+ * getGamesApi()
  * requests the current scoreboard from data.nba.net for the date provided.
  * stores information into {betterData} as an array of objects where each object is one game from the day.
  * returns the array betterData
@@ -50,7 +50,7 @@ function clearNodes(parent)
  * }
  * 
  */
-function getApi(date)
+function getGamesApi(date)
 {
     var requestURL = 'https://data.nba.net/prod/v1/' + date + '/scoreboard.json'
 
@@ -121,7 +121,7 @@ function displayGames(arrGameData)
             vTeamScoreEl.setAttribute('class', 'score');
 
             let vTeamContainer = document.createElement('div');
-            vTeamContainer.setAttribute('class','visiting-team');
+            vTeamContainer.setAttribute('class','team-display visiting-team');
             vTeamContainer.appendChild(vTeamNameEl);
             vTeamContainer.appendChild(vTeamLogoEl);
             vTeamContainer.appendChild(vTeamRecordEl);
@@ -171,7 +171,7 @@ function displayGames(arrGameData)
 
             //------------------Card and Styling Elements------------------//
             let hTeamContainer = document.createElement('div');
-            hTeamContainer.setAttribute('class','home-team');
+            hTeamContainer.setAttribute('class','team-display home-team');
             hTeamContainer.appendChild(hTeamNameEl);
             hTeamContainer.appendChild(hTeamLogoEl);
             hTeamContainer.appendChild(hTeamRecordEl);
@@ -193,20 +193,35 @@ function displayGames(arrGameData)
 
             let cellEl = document.createElement('a');
             cellEl.setAttribute('class',' card-link cell');
+            cellEl.dataset.gameid = e.gameId;
+            cellEl.setAttribute('onclick', 'getGame(this.dataset.gameid);');
             cellEl.appendChild(cardEl);
 
             gameContainer.appendChild(cellEl);
         })
 }
-getApi(todaysDate);
+getGamesApi(todaysDate);
 
 
-setInterval(function()
+// setInterval(function()
+// {
+//     getApi(todaysDate);
+// }, 10000);
+
+function getGame(t)
 {
-    getApi(todaysDate);
-}, 1000);
-
-gameContainer.addEventListener('click', e =>
+    for(games of betterData)
     {
-        console.log(e);
-    });
+        if (games.gameId == t)
+        {
+            let passVisitingTeam = games.visitingTeam;
+            let passHomeTeam = games.homeTeam;
+
+            let queryString = './solo-index.html?q=' + passVisitingTeam + '&' + passHomeTeam;
+
+            document.location.assign(queryString);
+        }
+    }
+}
+
+console.log(apiKey);
