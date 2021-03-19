@@ -40,14 +40,31 @@
 }
 
 /****************  Todays Games ****************/
+body {
+    background-color: #383A3F;
+}
 
+.grid-container {
+    padding: 15px 15px;
+}
 .teams-container {
     display:flex;
+    flex-direction: row;
+    justify-content:space-around; 
+    margin-top:10px;
 }
-.visiting-team {
+
+.card {
+     background: #1F2124; 
+     box-shadow: 0 0 20px rgba(0,0,0,0.4);
+     border-radius: 7px;
+     color: white; 
+     align-content: center;
+}
+
+.home-team, .visiting-team {
     width: 33%;
     line-height: 0;
-    text-align: center;
 }
 
 .timer-section {
@@ -60,31 +77,28 @@
     text-size-adjust: 10%;
 }
 
-.home-team {
-    width: 33%;
-    line-height: 0;
-    text-align: center;
-}
 
-.card {
-    padding: 10px;
-}
 
 h1, h2, p {
     font-family: 'Kanit', sans-serif;
 }
 
+/**************** Time Remaining ****************/
 h2 {
     margin-bottom: 0;
+    color: red;
 }
 
+/****************  Quarter (add to 'FINAL') ****************/
 h3 {
     font-size: .7em;
+    color: #ffffff;
 }
 
+/****************  Record ****************/
 p {
     margin-bottom: 0;
-
+    text-align: center;
 }
 
 h1.team-name {
@@ -94,14 +108,15 @@ h1.team-name {
 }
 
 .score {
-    background-color: #ededed;
+    background-color: #000000;
+    font-size: 2em;
+    border-bottom:darkslategrey 1px solid;
+    text-align: center;
 }
 
+/****************  Team Logo ****************/
 img {
     width: 200px;
    height: auto;
    padding: 10px;
 }
-
-
-
