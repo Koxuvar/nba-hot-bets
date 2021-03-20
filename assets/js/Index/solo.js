@@ -104,6 +104,73 @@ function getOdds(homeTeam)
     
 }
 
+function getSite(siteName)
+{
+    switch(siteName)
+    {
+        case('BetOnline.ag'):
+        {
+            return 'https://www.betonline.ag/sportsbook/basketball/nba';
+        }
+        case('LowVig.ag'):
+        {
+            return 'https://sportsbook.lowvig.ag';
+        }
+        case('PointsBet (US)'):
+        {
+            return 'https://il.pointsbet.com/sports/basketball/NBA/';
+        }
+        case('FanDuel'):
+        {
+            return 'https://sportsbook.fanduel.com/sports/navigation/830.1';
+        }
+        case('Bovada'):
+        {
+            return 'https://www.bovada.lv/sports/basketball/nba';
+        }
+        case('GTbets'):
+        {
+            return 'https://m.gtbets.ag/wagering1.asp?mode=lines&league=NBA&lg=1';
+        }
+        case('William Hill (US)'):
+        {
+            return 'https://www.williamhill.com/us/';
+        }
+        case('Caesars'):
+        {
+            return 'https://www.caesars.com/las-vegas/things-to-do/sports';
+        }
+        case('BetMGM'):
+        {
+            return 'https://promo.nj.betmgm.com/en/promo/geolocator?orh=sports.betmgm.com';
+        }
+        case('Unibet'):
+        {
+            return 'https://unibet.com/#filter/basketball/nba';
+        }
+        case('BetRivers'):
+        {
+            return 'https://betrivers.com/#home';
+        }
+        case('SugarHouse'):
+        {
+            return 'https://www.playsugarhouse.com/';
+        }
+        case('DraftKings'):
+        {
+            return 'https://www.draftkings.com/';
+        }
+        case('MyBookie.ag'):
+        {
+            return 'https://mybookie.ag/sportsbook/nba/';
+        }
+        case('Intertops'):
+        {
+            return 'https://sports.intertops.eu/en/Bets/Basketball/NBA-Lines/';
+        }
+    }
+}
+
 function displayCards(gameEntry)
 {
     
@@ -153,7 +220,7 @@ function displayCards(gameEntry)
         cardEl.setAttribute('class','card');
         cardEl.appendChild(cardSectionEl);
 
-        let siteLink = site.site_nice.indexOf('.') != -1 ? 'http://www.' + site.site_nice : 'http://www.' + site.site_key + '.com';
+        let siteLink = getSite(site.site_nice);
 
         let cellEl = document.createElement('a');
         cellEl.setAttribute('class',' card-link cell');
