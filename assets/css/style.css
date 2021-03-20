@@ -121,3 +121,33 @@ img {
    height: auto;
    padding: 10px;
 }
+
+
+.teams-display-container-big{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    text-align: center;
+    color: white;
+}
+
+.big{
+    font-size: xx-large;
+    text-align: center;
+}
+
+.site-container{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.site-name{
+    font-size: 1.75rem;
+    padding: 1rem;
+}
+
+.odds-display{
+    font-size: 1rem;
+    padding: 1rem;
+
+}

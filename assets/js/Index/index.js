@@ -332,7 +332,7 @@ function getGame(t)
             let passVisitingTeam = games.visitingTeam;
             let passHomeTeam = games.homeTeam;
 
-            let queryString = './solo-index.html?q=' + passVisitingTeam + '&' + passHomeTeam;
+            let queryString = './solo-index.html?q=' + passVisitingTeam + '&' + passHomeTeam + '&' + t;
 
             document.location.assign(queryString);
         }

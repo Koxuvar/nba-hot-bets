@@ -4,7 +4,14 @@ let cardContainer = document.getElementById('gameOdds');
 let arrOddsSites = [];
 let hTeam = '';
 let vTeam = '';
+let mGameID = '';
 var retVal;
+
+/**
+ * Get the current date using moment.js
+ * formats to the req from the nba api which is YYYYMMDD
+ */
+ let todaysDate = moment().format('YYYYMMDD');
 
 function getTeamsApi(teamTricode)
 {
@@ -60,6 +67,7 @@ function getParams()
 
     vTeam = searchParams[0].split('=').pop();
     hTeam = searchParams[1];
+    mGameID = searchParams[2];
 
     getOdds(hTeam);
 }
@@ -173,6 +181,53 @@ function getSite(siteName)
 
 function displayCards(gameEntry)
 {
+
+    let gameURL = 'https://data.nba.net/prod/v1/' + todaysDate + '/' + mGameID + '_boxscore.json';
+
+    fetch(gameURL)
+        .then(function (response)
+            {
+                if(response.ok)
+                {
+                    response.json()
+                        .then(function (data)
+                        {
+                            $('#vteam-name').text(vTeam);
+                            let logoLink = 'assets/images/logos/' + vTeam + '.png';
+                            $('#vteam-image').attr('src', logoLink)
+                            $('#vteam-score').text(data.basicGameData.vTeam.score ? data.basicGameData.vTeam.score : 0);
+
+                            $('#hteam-name').text(hTeam);
+                            logoLink = 'assets/images/logos/' + hTeam + '.png';
+                            $('#hteam-image').attr('src', logoLink)
+                            $('#hteam-score').text(data.basicGameData.hTeam.score ? data.basicGameData.hTeam.score : 0);
+                        });
+                }
+            });
+
+   setInterval(function() 
+   { 
+       fetch(gameURL)
+        .then(function (response)
+            {
+                if(response.ok)
+                {
+                    response.json()
+                        .then(function (data)
+                        {
+                            $('#vteam-name').text(vTeam);
+                            let logoLink = 'assets/images/logos/' + vTeam + '.png';
+                            $('#vteam-image').attr('src', logoLink)
+                            $('#vteam-score').text(data.basicGameData.vTeam.score ? data.basicGameData.vTeam.score : 0);
+
+                            $('#hteam-name').text(hTeam);
+                            logoLink = 'assets/images/logos/' + hTeam + '.png';
+                            $('#hteam-image').attr('src', logoLink)
+                            $('#hteam-score').text(data.basicGameData.hTeam.score ? data.basicGameData.hTeam.score : 0);
+                        });
+                }
+            });
+   }, 10000);
     
     for(site of gameEntry.sites)
     {
