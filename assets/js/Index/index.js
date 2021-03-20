@@ -8,6 +8,16 @@ let betterData = [];
  */
 let todaysDate = moment().format('YYYYMMDD');
 
+/**
+ * get the users imediate time using moment.js
+ */
+let rightNow = '';
+setInterval(function()
+{
+    rightNow = moment().format();
+}, 1000);
+
+
 
 /**
  * clearNodes
@@ -46,7 +56,8 @@ function clearNodes(parent)
  *  isEndOfPeriod:true,
  *  gameId:201351246512, --defined by the NBA
  *  startTime:7:00 PM ET,
- *  gameTime:11:15
+ *  gameTime:11:15,
+ *  startTimeUTC: 2021-03-20T19:30:00.000Z
  * }
  * 
  */
@@ -81,14 +92,26 @@ function getGamesApi(date)
                                     isEndOfPeriod:e.period.isEndOfPeriod,
                                     gameId:e.gameId,
                                     startTime:e.startTimeEastern,
-                                    gameTime:e.clock
+                                    gameTime:e.clock,
+                                    startTimeUTC: e.startTimeUTC
                                 });
                             });
 
-                            displayGames(betterData);
-                            return betterData;
-                            
-                        });
+                            return betterData; 
+                        })
+                            .then(function (data)
+                            {
+                                
+                                if(!gameContainer.childElementCount)
+                                {  
+                                    displayGames(data);
+                                }
+                                else
+                                {
+                                    updateCards(data);
+                                }
+
+                            });
             }
         });
 }
@@ -99,14 +122,13 @@ function getGamesApi(date)
  * 
  * @param {arrGameData} - Array - An array of objects iterated over that will then be displayed
  * 
- * !ISSUE images functionality temporarily commented out until images folder is implemented with logos
  */
 function displayGames(arrGameData)
 {
     clearNodes(gameContainer);
 
     arrGameData.forEach(e =>
-        {
+        {   
             //------------------Visiting Team------------------//
             let vTeamNameEl = document.createElement('h1');
             vTeamNameEl.innerHTML = e.visitingTeam;
@@ -117,7 +139,7 @@ function displayGames(arrGameData)
             let vTeamRecordEl = document.createElement('p');
             vTeamRecordEl.innerHTML = e.visitingTeamRecordWins + ' - ' + e.visitingTeamRecordLoses;
             let vTeamScoreEl = document.createElement('h1');
-            vTeamScoreEl.innerHTML = e.visitingTeamScore;
+            vTeamScoreEl.innerHTML = e.visitingTeamScore ? e.visitingTeamScore : 0;
             vTeamScoreEl.setAttribute('class', 'score');
 
             let vTeamContainer = document.createElement('div');
@@ -146,9 +168,17 @@ function displayGames(arrGameData)
                 gamePeriodEl.innerHTML = 'HALF';
             }
             else
-            {
-                gamePeriodEl.innerHTML = '';
-                gameTimerEl.innerHTML = 'Final';
+            {  
+                if(e.period >= 4)
+                {
+                    gamePeriodEl.innerHTML = '';
+                    gameTimerEl.innerHTML = 'Final';
+                }
+                else
+                {
+                    gamePeriodEl.innerHTML = '';
+                    gameTimerEl.innerHTML = e.startTime;
+                }
             }
 
             let timeEl = document.createElement('div');
@@ -166,7 +196,7 @@ function displayGames(arrGameData)
             let hTeamRecordEl = document.createElement('p');
             hTeamRecordEl.innerHTML = e.homeTeamRecordWins + ' - ' + e.homeTeamRecordLoses;
             let hTeamScoreEl = document.createElement('h1');
-            hTeamScoreEl.innerHTML = e.homeTeamScore;
+            hTeamScoreEl.innerHTML = e.homeTeamScore ? e.homeTeamScore : 0 ;
             hTeamScoreEl.setAttribute('class', 'score');
 
             //------------------Card and Styling Elements------------------//
@@ -200,18 +230,42 @@ function displayGames(arrGameData)
             gameContainer.appendChild(cellEl);
         })
 }
-getGamesApi(todaysDate);
+
+function updateCards(gameid)
+{
+    
+}
+
 
 
 setInterval(function()
-{
-    getApi(todaysDate);
-}, 10000);
+{   
+    /**
+     * for every card on page get id
+     * go through better data and if start time has already happened add game id to array
+     * take array and pass into function that calls getGamesApi again
+     */
+    if(gameContainer.childElementCount)
+    {
+        for (card of gameContainer.childNodes)
+        {
+            for(games of betterData)
+            {
+                if(card.dataset.gameid == games.gameId && moment.utc() > moment(games.startTimeUTC))
+                {
+                    updateCard(card.dataset.gameid);
+                }
+            }
+        }
+    }
+    
+}, 1000);
 
 function getGame(t)
 {
     for(games of betterData)
     {
+
         if (games.gameId == t)
         {
             let passVisitingTeam = games.visitingTeam;
@@ -223,4 +277,7 @@ function getGame(t)
         }
     }
 }
+
+
+getGamesApi(todaysDate);
 

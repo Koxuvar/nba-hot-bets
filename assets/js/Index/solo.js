@@ -2,9 +2,9 @@ let cardContainer = document.getElementById('gameOdds');
 
 
 let arrOddsSites = [];
-// let hTeam = '';
-// let vTeam = '';
-var retVal = '';
+let hTeam = '';
+let vTeam = '';
+var retVal;
 
 function getTeamsApi(teamTricode)
 {
@@ -29,7 +29,7 @@ function getTeamsApi(teamTricode)
                 if(response.ok)
                 {
                     response.json()
-                            .then(function (data)
+                            .then((function (data)
                             {
                                 for(e of data.teams.config)
                                 {      
@@ -44,7 +44,7 @@ function getTeamsApi(teamTricode)
                                 }
 
                                 
-                            });
+                            }));
                             
                 }
                 
@@ -54,13 +54,12 @@ function getTeamsApi(teamTricode)
     
 }
 
-
 function getParams()
 {
     let searchParams = document.location.search.split('&');
 
-    let vTeam = searchParams[0].split('=').pop();
-    let hTeam = searchParams[1];
+    vTeam = searchParams[0].split('=').pop();
+    hTeam = searchParams[1];
 
     getOdds(hTeam);
 }
@@ -68,7 +67,7 @@ function getParams()
 
 function getOdds(homeTeam)
 {
-    let oddsURL = 'https://api.the-odds-api.com/v3/odds/?apiKey=' + apiKey + '&sport=Basketball&region=us';
+    let oddsURL = 'https://api.the-odds-api.com/v3/odds/?apiKey=' + apiKey + '&sport=basketball_nba&region=us&mkt=spreads';
     
     let hTeam = getTeamsApi(homeTeam);
     
@@ -92,8 +91,10 @@ function getOdds(homeTeam)
                             });
                             for(games of arrOddsSites)
                             {
-                                if(retVal == games.home_team)
+                                
+                                if(retVal == games.home_team || hTeam == games.home_team)
                                 {
+                                    
                                     displayCards(games);
                                 }
                             }
@@ -105,7 +106,7 @@ function getOdds(homeTeam)
 
 function displayCards(gameEntry)
 {
-    console.log(gameEntry);
+    
     for(site of gameEntry.sites)
     {
         let siteNameEl = document.createElement('h1');
@@ -113,13 +114,18 @@ function displayCards(gameEntry)
         siteNameEl.innerHTML = site.site_nice;
 
         let oddsEl = document.createElement('h2');
-        oddsEl.setAttribute('class', 'odds-display');
-        oddsEl.innerHTML = site.odds.h2h[0] + ' - ' + site.odds.h2h[1];
+        oddsEl.setAttribute('class', 'odds-display-vteam odds-display');
+        oddsEl.innerHTML = vTeam + ' ' + 'spread' + site.odds.spreads.odds[0] + ' points ' + site.odds.spreads.points[0];
+
+        let odds2El = document.createElement('h2');
+        odds2El.setAttribute('class', 'odds-display-hteam odds-display');
+        odds2El.innerHTML = hTeam + ' ' + 'spread' + site.odds.spreads.odds[1] + ' points ' + site.odds.spreads.points[1];
 
         let siteContainerEl = document.createElement('div');
         siteContainerEl.setAttribute('class','site-container');
         siteContainerEl.appendChild(siteNameEl);
         siteContainerEl.appendChild(oddsEl);
+        siteContainerEl.appendChild(odds2El);
     
         let cardSectionEl = document.createElement('div');
         cardSectionEl.setAttribute('class','card-section');
@@ -129,9 +135,11 @@ function displayCards(gameEntry)
         cardEl.setAttribute('class','card');
         cardEl.appendChild(cardSectionEl);
 
+        let siteLink = site.site_nice.indexOf('.') != -1 ? 'http://www.' + site.site_nice : 'http://www.' + site.site_key + '.com';
+
         let cellEl = document.createElement('a');
         cellEl.setAttribute('class',' card-link cell');
-        cellEl.setAttribute('href', 'getGame(this.dataset.gameid);');
+        cellEl.setAttribute('href', siteLink);
         cellEl.appendChild(cardEl)  
         cardContainer.appendChild(cellEl);
     }
