@@ -158,6 +158,7 @@ function displayCards(gameEntry)
         let cellEl = document.createElement('a');
         cellEl.setAttribute('class',' card-link cell');
         cellEl.setAttribute('href', siteLink);
+        cellEl.setAttribute('target', '_blank');
         cellEl.appendChild(cardEl)  
         cardContainer.appendChild(cellEl);
     }
