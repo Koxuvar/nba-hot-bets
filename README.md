@@ -1,17 +1,21 @@
 # NBA HOT BETS
-NBA Hot Bets: One-Stop Shop for NBA Betting Odds
+NBA Hot Bets web app is a live NBA Scoreboard, providing odds from the most popular sportsbooks for a passionate sportsbetter to compare and contrast. 
+This resource is for passionate sportsbetters to simultaneously compare odds of different sportsbooks, to then access that sportsbook immediately to place a bet.
 
-## DESCRIPTION
-NBA Hot Bets is a sports betting resource for live NBA Games. NBA Hot Bets will include the best odds, live scoring and stat updates and suggested online sportsbooks to capitalize on the most favorable odds.
+## FEATURES
+- 
 
 ## USER STORY
 - AS A sports better and basketball fan
-- I WANT to be able to use this app to figure out the best NBA betting odds 
-- AND THEN I want it to tell me what are the best sportsbook sites
-- SO I can make the best most informed bet
+- I WANT to be able to compare NBA betting odds from multiple sportsbooks at the same time
+- AND THEN I want to have access to those listed sportsbook sites
+- SO I can make a well-informed bet or live bet
+
+## SCREENSHOTS
+- 
 
 ## TASKS
-- Connor, JS 
+- Connor, Javascript
 - Alex, CSS/HTML
 - Solomon, Presentation/Organization/HTML
 
