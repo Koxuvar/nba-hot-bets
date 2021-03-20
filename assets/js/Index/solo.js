@@ -113,19 +113,37 @@ function displayCards(gameEntry)
         siteNameEl.setAttribute('class', 'site-name');
         siteNameEl.innerHTML = site.site_nice;
 
+        let vteamNameEl = document.createElement('h1');
+        vteamNameEl.innerHTML = vTeam;
+        vteamNameEl.setAttribute('class', 'team-name');
+
         let oddsEl = document.createElement('h2');
         oddsEl.setAttribute('class', 'odds-display-vteam odds-display');
-        oddsEl.innerHTML = vTeam + ' ' + 'spread' + site.odds.spreads.odds[0] + ' points ' + site.odds.spreads.points[0];
+        oddsEl.innerHTML ='spread' + site.odds.spreads.odds[0] + ' points ' + site.odds.spreads.points[0];
+
+        let vteamContainer = document.createElement('div');
+        vteamContainer.setAttribute('class','vteam-container team-display');
+        vteamContainer.appendChild(vteamNameEl);
+        vteamContainer.appendChild(oddsEl);
+
+        let hteamNameEl = document.createElement('h1');
+        hteamNameEl.innerHTML = hTeam;
+        hteamNameEl.setAttribute('class', 'team-name');
 
         let odds2El = document.createElement('h2');
         odds2El.setAttribute('class', 'odds-display-hteam odds-display');
-        odds2El.innerHTML = hTeam + ' ' + 'spread' + site.odds.spreads.odds[1] + ' points ' + site.odds.spreads.points[1];
+        odds2El.innerHTML = 'spread' + site.odds.spreads.odds[1] + ' points ' + site.odds.spreads.points[1];
+
+        let hteamContainer = document.createElement('div');
+        hteamContainer.setAttribute('class','vteam-container team-display');
+        hteamContainer.appendChild(hteamNameEl);
+        hteamContainer.appendChild(odds2El);
 
         let siteContainerEl = document.createElement('div');
         siteContainerEl.setAttribute('class','site-container');
         siteContainerEl.appendChild(siteNameEl);
-        siteContainerEl.appendChild(oddsEl);
-        siteContainerEl.appendChild(odds2El);
+        siteContainerEl.appendChild(vteamContainer);
+        siteContainerEl.appendChild(hteamContainer);
     
         let cardSectionEl = document.createElement('div');
         cardSectionEl.setAttribute('class','card-section');
