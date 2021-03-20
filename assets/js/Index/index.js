@@ -106,10 +106,6 @@ function getGamesApi(date)
                                 {  
                                     displayGames(data);
                                 }
-                                else
-                                {
-                                    updateCards(data);
-                                }
 
                             });
             }
@@ -141,6 +137,7 @@ function displayGames(arrGameData)
             let vTeamScoreEl = document.createElement('h1');
             vTeamScoreEl.innerHTML = e.visitingTeamScore ? e.visitingTeamScore : 0;
             vTeamScoreEl.setAttribute('class', 'score');
+            vTeamScoreEl.setAttribute('id', 'visiting-team-score');
 
             let vTeamContainer = document.createElement('div');
             vTeamContainer.setAttribute('class','team-display visiting-team');
@@ -153,8 +150,10 @@ function displayGames(arrGameData)
             let gameTimerEl = document.createElement('h2');
             gameTimerEl.innerHTML = e.gameTime;
             gameTimerEl.setAttribute('class','game-timer');
+            gameTimerEl.setAttribute('id', 'game-timer');
             
             let gamePeriodEl = document.createElement('h3');
+            gamePeriodEl.setAttribute('id', 'game-period');
             if(!e.isEndOfPeriod && !e.isHalftime && e.gameTime != "")
             {
                 gamePeriodEl.innerHTML = 'Period\n' + e.period;
@@ -198,6 +197,7 @@ function displayGames(arrGameData)
             let hTeamScoreEl = document.createElement('h1');
             hTeamScoreEl.innerHTML = e.homeTeamScore ? e.homeTeamScore : 0 ;
             hTeamScoreEl.setAttribute('class', 'score');
+            hTeamScoreEl.setAttribute('id', 'home-team-score');
 
             //------------------Card and Styling Elements------------------//
             let hTeamContainer = document.createElement('div');
@@ -233,7 +233,68 @@ function displayGames(arrGameData)
 
 function updateCards(gameid)
 {
-    
+    let updateURL = 'https://data.nba.net/prod/v1/' + todaysDate + '/' + gameid + '_boxscore.json';
+
+    fetch(updateURL)
+        .then(function (response)
+        {
+            if(response.ok)
+            {
+                response.json()
+                        .then(function (data)
+                        {
+                           return {
+                                clock:data.basicGameData.clock,
+                                hTeamScore:data.basicGameData.hTeam.score,
+                                vTeamScore:data.basicGameData.vTeam.score,
+                                isHalftime: data.basicGameData.period.isHalftime,
+                                isEndOfPeriod: data.basicGameData.period.isEndOfPeriod,
+                                period:data.basicGameData.period.current
+                           }
+                        })
+                            .then(function (data)
+                            {
+                                for(game of gameContainer.childNodes)
+                                {
+                                    if(game.dataset.gameid == gameid)
+                                    {
+                                        game.firstChild.firstChild.firstChild.firstChild.children[3].innerHTML = data.vTeamScore;
+                                        game.firstChild.firstChild.firstChild.children[2].children[3].innerHTML = data.hTeamScore;
+                                        game.firstChild.firstChild.firstChild.children[1].children[0].innerHTML = data.clock;
+
+                                        
+
+                                        if(!data.isEndOfPeriod && !data.isHalftime && data.clock != "")
+                                        {
+                                            game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = 'Period\n' + data.period;
+                                        }
+                                        else if (!e.isHalftime && e.isEndOfPeriod)
+                                        {
+                                            game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = 'End of ' + data.period;
+                                        }
+                                        else if(e.isEndOfPeriod && e.isHalftime)
+                                        {
+                                            game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = 'HALF';
+                                        }
+                                        else
+                                        {  
+                                            if(e.period >= 4)
+                                            {
+                                                game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = '';
+                                                game.firstChild.firstChild.firstChild.children[1].children[0].innerHTML = 'Final';
+                                            }
+                                            else
+                                            {
+                                                game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = '';
+                                                game.firstChild.firstChild.firstChild.children[1].children[0].innerHTML = data.startTime;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            });
+            }
+        });
 }
 
 
@@ -281,3 +342,4 @@ function getGame(t)
 
 getGamesApi(todaysDate);
 
+            
