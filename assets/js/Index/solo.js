@@ -43,8 +43,6 @@ function getTeamsApi(teamTricode)
                                     let tri = e.tricode;                              
                                     if(teamTricode == tri)
                                     {  
-                                        console.log('----------')
-                                        console.log(e.ttsName);
                                         retVal =  e.ttsName;
                                         return retVal;
                                     }
@@ -179,6 +177,59 @@ function getSite(siteName)
     }
 }
 
+function teamDisplay(data)
+{
+    $('#vteam-name').text(vTeam);
+                            let logoLink = 'assets/images/logos/' + vTeam + '.png';
+                            $('#vteam-image').attr('src', logoLink)
+                            $('#vteam-score').text(data.basicGameData.vTeam.score ? data.basicGameData.vTeam.score : 0);
+
+                            $('#game-timer').text(data.basicGameData.clock);
+
+                            if(!data.basicGameData.period.isEndOfPeriod && !data.basicGameData.period.isHalftime && data.basicGameData.clock != "")
+                            {
+                                $('#game-period-solo').text('Period\n' + data.basicGameData.period.current);
+                            }
+                            else if (!data.basicGameData.period.isHalftime && data.basicGameData.period.isEndOfPeriod)
+                            {
+                                $('#game-period-solo').text('End of ' + data.basicGameData.period.current);
+                            }
+                            else if(data.basicGameData.period.isEndOfPeriod && data.basicGameData.period.isHalftime)
+                            {
+                                $('#game-period-solo').text('HALF');
+                            }
+                            else
+                            {  
+                                if(data.period >= 4)
+                                {
+                                    $('#game-period-solo').text('');
+                                    $('#game-timer').text('Final');
+                                }
+                                else
+                                {
+                                    $('#game-period-solo').text('');
+                                    $('#game-timer').text(data.basigGameData.startTimeEastern);
+                                }
+                            }
+
+                            $('#hteam-name').text(hTeam);
+                            logoLink = 'assets/images/logos/' + hTeam + '.png';
+                            $('#hteam-image').attr('src', logoLink)
+                            $('#hteam-score').text(data.basicGameData.hTeam.score ? data.basicGameData.hTeam.score : 0);
+
+                            $('#boxscore-vteam-name').text(vTeam);
+                            $('#boxscore-vteam-p1').text(data.basicGameData.vTeam.linescore[0].score);
+                            $('#boxscore-vteam-p2').text(data.basicGameData.vTeam.linescore[1].score);
+                            $('#boxscore-vteam-p3').text(data.basicGameData.vTeam.linescore[2].score);
+                            $('#boxscore-vteam-p4').text(data.basicGameData.vTeam.linescore[3].score);
+
+                            $('#boxscore-hteam-name').text(hTeam);
+                            $('#boxscore-hteam-p1').text(data.basicGameData.hTeam.linescore[0].score);
+                            $('#boxscore-hteam-p2').text(data.basicGameData.hTeam.linescore[1].score);
+                            $('#boxscore-hteam-p3').text(data.basicGameData.hTeam.linescore[2].score);
+                            $('#boxscore-hteam-p4').text(data.basicGameData.hTeam.linescore[3].score);
+}
+
 function displayCards(gameEntry)
 {
 
@@ -192,15 +243,7 @@ function displayCards(gameEntry)
                     response.json()
                         .then(function (data)
                         {
-                            $('#vteam-name').text(vTeam);
-                            let logoLink = 'assets/images/logos/' + vTeam + '.png';
-                            $('#vteam-image').attr('src', logoLink)
-                            $('#vteam-score').text(data.basicGameData.vTeam.score ? data.basicGameData.vTeam.score : 0);
-
-                            $('#hteam-name').text(hTeam);
-                            logoLink = 'assets/images/logos/' + hTeam + '.png';
-                            $('#hteam-image').attr('src', logoLink)
-                            $('#hteam-score').text(data.basicGameData.hTeam.score ? data.basicGameData.hTeam.score : 0);
+                            teamDisplay(data);
                         });
                 }
             });
@@ -215,15 +258,7 @@ function displayCards(gameEntry)
                     response.json()
                         .then(function (data)
                         {
-                            $('#vteam-name').text(vTeam);
-                            let logoLink = 'assets/images/logos/' + vTeam + '.png';
-                            $('#vteam-image').attr('src', logoLink)
-                            $('#vteam-score').text(data.basicGameData.vTeam.score ? data.basicGameData.vTeam.score : 0);
-
-                            $('#hteam-name').text(hTeam);
-                            logoLink = 'assets/images/logos/' + hTeam + '.png';
-                            $('#hteam-image').attr('src', logoLink)
-                            $('#hteam-score').text(data.basicGameData.hTeam.score ? data.basicGameData.hTeam.score : 0);
+                            teamDisplay(data);
                         });
                 }
             });
