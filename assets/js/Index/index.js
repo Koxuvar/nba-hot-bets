@@ -268,17 +268,17 @@ function updateCards(gameid)
                                         {
                                             game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = 'Period\n' + data.period;
                                         }
-                                        else if (!e.isHalftime && e.isEndOfPeriod)
+                                        else if (!data.isHalftime && data.isEndOfPeriod)
                                         {
                                             game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = 'End of ' + data.period;
                                         }
-                                        else if(e.isEndOfPeriod && e.isHalftime)
+                                        else if(data.isEndOfPeriod && data.isHalftime)
                                         {
                                             game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = 'HALF';
                                         }
                                         else
                                         {  
-                                            if(e.period >= 4)
+                                            if(data.period >= 4)
                                             {
                                                 game.firstChild.firstChild.firstChild.children[1].children[1].innerHTML = '';
                                                 game.firstChild.firstChild.firstChild.children[1].children[0].innerHTML = 'Final';
@@ -314,7 +314,7 @@ setInterval(function()
             {
                 if(card.dataset.gameid == games.gameId && moment.utc() > moment(games.startTimeUTC))
                 {
-                    updateCard(card.dataset.gameid);
+                    updateCards(card.dataset.gameid);
                 }
             }
         }
