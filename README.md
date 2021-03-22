@@ -15,17 +15,24 @@ This resource is for passionate sportsbetters to simultaneously compare odds of 
 - SO I can make a well-informed bet or live bet
 
 ## SCREENSHOTS
-<img width="1591" alt="tdays_game" src="https://user-images.githubusercontent.com/75388687/112027336-14809300-8b05-11eb-8f02-f159d591562f.png">
+
+![screenshot 1](/assets/images/screenshots/sc_1.png)
+
 - The today section will always populate the current days scheduled matchups 
 
-<img width="1231" alt="tdays_game_sel" src="https://user-images.githubusercontent.com/75388687/112027375-1cd8ce00-8b05-11eb-8fd2-6856f5da73ff.png">
+![screenshot 2](/assets/images/screenshots/sc_2.png)
+
 -  Select any game to then take you to that games Odd's Page
 
-<img width="1360" alt="game_sel_lvscr" src="https://user-images.githubusercontent.com/75388687/112027499-367a1580-8b05-11eb-88f6-fc93d9aff266.png">
+![screenshot 3](/assets/images/screenshots/sc_3.png)
+
 - All games in progress will even show you live scores
 
-<img width="1248" alt="site_odds_sel" src="https://user-images.githubusercontent.com/75388687/112027522-3d088d00-8b05-11eb-96d4-121a190c7cd9.png">
+![screenshot 4](/assets/images/screenshots/sc_4.png)
+
 - All sportsbetting sites will be listed below Live Score section, from here you can select desired site to place bet 
+
+![a gif showing the default action of clicking on a betting site card](/assets/images/odd_site.gif)
 
 ## Contributors
 - Connor Sullivan
