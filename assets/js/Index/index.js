@@ -363,11 +363,6 @@ function getBracket()
 
 setInterval(function()
 {   
-    /**
-     * for every card on page get id
-     * go through better data and if start time has already happened add game id to array
-     * take array and pass into function that calls getGamesApi again
-     */
     if(gameContainer.childElementCount)
     {
         for (card of gameContainer.childNodes)
@@ -404,4 +399,6 @@ function getGame(t)
 
 getGamesApi(todaysDate);
 getBracket();
+
+
             
