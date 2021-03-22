@@ -1,7 +1,7 @@
 .hero-section {
     background: url("../images/hotbets-header.jpg") 50% no-repeat;
     background-size: cover;
-    height: 50vh;
+    height: 60vh;
     text-align: center;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -13,14 +13,13 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  
-  .hero-section .hero-section-text {
-    color: #fefefe;
-    text-shadow: 1px 1px 2px #0a0a0a;
-  }
 
+  @media screen and (max-width: 768px) {
+   .hero-section {
+        height: 30vh;
+   }}
 /****************  Navigation ****************/
- a {
+ a:link {
      color: #ffffff;
      font-weight: 800;
  }
@@ -28,15 +27,8 @@
  a:hover {
      color: red;
  }
-
- .button {
-     color: #ffffff;
-     background-color: red;
-     font-weight: bolder;
- }
-
-.button:hover {
-    background-color: brown;
+a {
+    color: lightgray;
 }
 
 /****************  Todays Games ****************/
@@ -84,8 +76,6 @@ body {
     text-size-adjust: 10%;
 }
 
-
-
 h1, h2, p {
     font-family: 'Kanit', sans-serif;
 }
@@ -128,7 +118,6 @@ img {
    padding: 10px;
 }
 
-
 .teams-display-container-big{
     display: flex;
     flex-flow: row nowrap;
@@ -169,4 +158,16 @@ table tr, tbody td {
 
 tbody td{
     text-align: left;
+}
+
+td img{
+    height: 75px;
+    width: 75px;
+}
+
+h2.odds-display-vteam odds-display {
+        background-color: #000000;
+        font-size: 2em;
+        border-bottom:darkslategrey 1px solid;
+        text-align: center;
 }
