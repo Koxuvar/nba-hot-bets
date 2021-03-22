@@ -297,7 +297,69 @@ function updateCards(gameid)
         });
 }
 
+function addTeamRow(team)
+{
+    let teamRank = team.confRank;
+    let teamName = team.teamSitesOnly.teamKey + ' ' + team.teamSitesOnly.teamNickname;
+    let teamW = team.win;
+    let teamL = team.loss;
+    let teamWinPer = team.winPctV2;
+    let teamGB = team.gamesBehind;
+    let teamConf = team.confWin + ' - ' + team.confLoss;
+    let teamDiv = team.divWin + ' - ' + team.divLoss;
+    let teamHome = team.homeWin + ' - ' + team.homeLoss;
+    let teamAway = team.awayWin + ' - ' + team.awayLoss;
+    let teamLastTen = team.lastTenWin + ' - ' + team.lastTenLoss;
+    let teamStreak = team.teamSitesOnly.streakText;
+    let logoLink = './assets/images/logos/' + team.teamSitesOnly.teamTricode + '.png';
 
+    return `<tr>
+                <td>${teamRank} <img src="${logoLink}"> ${teamName}</td>
+                <td>${teamW}</td>
+                <td>${teamL}</td>
+                <td>${teamWinPer}</td>
+                <td>${teamGB}</td>
+                <td>${teamConf}</td>
+                <td>${teamDiv}</td>
+                <td>${teamHome}</td>
+                <td>${teamAway}</td>
+                <td>${teamLastTen}</td>
+                <td>${teamStreak}</td>
+            </tr>`;
+}
+
+function getBracket()
+{
+    var requestURL = 'https://data.nba.net/prod/v1/current/standings_conference.json'
+
+    fetch(requestURL)
+        .then(function (response)
+        {
+            if(response.ok)
+            {
+                response.json()
+                        .then(function (data)
+                        {
+                            $('#teams-standings').append('<tr id="eastern"><th>EASTERN CONFERENCE</th></tr>');
+
+                            data.league.standard.conference.east.forEach( e => 
+                            {   
+                                $('#teams-standings').append(addTeamRow(e));
+                            });
+
+                            $('#teams-standings').append('<tr id="western"><th>WESTERN CONFERENCE</th></tr>');
+
+                            data.league.standard.conference.west.forEach( e => 
+                            {   
+                                $('#teams-standings').append(addTeamRow(e));
+                            });
+
+                            
+                        });
+                        
+            }
+        });
+}
 
 setInterval(function()
 {   
@@ -341,5 +403,5 @@ function getGame(t)
 
 
 getGamesApi(todaysDate);
-// getBracket(todaysDate);
+getBracket();
             
