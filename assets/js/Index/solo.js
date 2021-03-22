@@ -174,6 +174,10 @@ function getSite(siteName)
         {
             return 'https://sports.intertops.eu/en/Bets/Basketball/NBA-Lines/';
         }
+        case('Fox Bet'):
+        {
+            return 'https://www.foxbet.com/';
+        }
     }
 }
 
@@ -208,7 +212,7 @@ function teamDisplay(data)
                                 else
                                 {
                                     $('#game-period-solo').text('');
-                                    $('#game-timer').text(data.basigGameData.startTimeEastern);
+                                    $('#game-timer').text(data.basicGameData.startTimeEastern);
                                 }
                             }
 
