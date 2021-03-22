@@ -174,7 +174,7 @@ function getSite(siteName)
         {
             return 'https://sports.intertops.eu/en/Bets/Basketball/NBA-Lines/';
         }
-        case('Fox Bet'):
+        case('FOX Bet'):
         {
             return 'https://www.foxbet.com/';
         }
@@ -222,16 +222,22 @@ function teamDisplay(data)
                             $('#hteam-score').text(data.basicGameData.hTeam.score ? data.basicGameData.hTeam.score : 0);
 
                             $('#boxscore-vteam-name').text(vTeam);
-                            $('#boxscore-vteam-p1').text(data.basicGameData.vTeam.linescore[0].score);
-                            $('#boxscore-vteam-p2').text(data.basicGameData.vTeam.linescore[1].score);
-                            $('#boxscore-vteam-p3').text(data.basicGameData.vTeam.linescore[2].score);
-                            $('#boxscore-vteam-p4').text(data.basicGameData.vTeam.linescore[3].score);
+                            if(data.basicGameData.vTeam.linescore.length != 0)
+                            {
+                                $('#boxscore-vteam-p1').text(data.  basicGameData.vTeam.linescore[0]. score);
+                                $('#boxscore-vteam-p2').text(data.  basicGameData.vTeam.linescore[1]. score);
+                                $('#boxscore-vteam-p3').text(data.  basicGameData.vTeam.linescore[2]. score);
+                                $('#boxscore-vteam-p4').text(data.  basicGameData.vTeam.linescore[3]. score);
+                            }
 
                             $('#boxscore-hteam-name').text(hTeam);
-                            $('#boxscore-hteam-p1').text(data.basicGameData.hTeam.linescore[0].score);
-                            $('#boxscore-hteam-p2').text(data.basicGameData.hTeam.linescore[1].score);
-                            $('#boxscore-hteam-p3').text(data.basicGameData.hTeam.linescore[2].score);
-                            $('#boxscore-hteam-p4').text(data.basicGameData.hTeam.linescore[3].score);
+                            if(data.basicGameData.hTeam.linescore.length != 0)
+                            {
+                                $('#boxscore-hteam-p1').text(data.basicGameData.hTeam.linescore[0].score);
+                                $('#boxscore-hteam-p2').text(data.basicGameData.hTeam.linescore[1].score);
+                                $('#boxscore-hteam-p3').text(data.basicGameData.hTeam.linescore[2].score);
+                                $('#boxscore-hteam-p4').text(data.basicGameData.hTeam.linescore[3].score);
+                            }
 }
 
 function displayCards(gameEntry)
