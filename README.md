@@ -45,4 +45,5 @@ This resource is for passionate sportsbetters to simultaneously compare odds of 
 
 ## GITHUB REPO
 https://www.github.com/koxuvar/nba-hot-bets
+
 https://koxuvar.github.io/nba-hot-bets/
