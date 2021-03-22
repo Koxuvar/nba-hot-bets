@@ -341,5 +341,5 @@ function getGame(t)
 
 
 getGamesApi(todaysDate);
-
+// getBracket(todaysDate);
             

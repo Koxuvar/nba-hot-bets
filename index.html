@@ -27,6 +27,7 @@
     <div class="top-bar-left">
       <ul class="dropdown menu">
         <li><a href="#">Today's Games</a></li>
+        <li><a data-open="bracket-modal">Conference Standings</a></li>
         <!-- <li><a href="#">Contact</a></li> -->
         <!-- <li><a href="#">Link</a></li> -->
       </ul>
@@ -40,6 +41,31 @@
     </div> -->
   </div>
 </nav>
+
+
+
+<div class="large reveal" id="bracket-modal" data-reveal>
+    <table class="hover" id="standings">
+      <thead>
+        <tr>
+          <th width="400">Team</th>
+          <th>W</th>
+          <th>L</th>
+          <th>WIN%</th>
+          <th>GB</th>
+          <th>CONF</th>
+          <th>DIV</th>
+          <th>HOME</th>
+          <th>ROAD</th>
+          <th>OT</th>
+          <th width="200">LAST 10</th>
+          <th width="200">STREAK</th>
+        </tr>
+      </thead>
+    </table>
+</div>
+
+<!-- <p><button class="button" data-open="bracket-modal">ClickMe</button></p> -->
   
 <!-- GAME CARDS -->
 
@@ -50,8 +76,15 @@
   
 <!-- JS -->
 
+
+
 <script src="assets/js/FoundationJS/vendor.js"></script>
 <script src="assets/js/FoundationJS/foundation.js"></script>
 <script src="assets/js/Index/index.js"></script>
+<script>
+  $(document).ready(function() {
+     $(document).foundation();
+  })
+</script>
 </body>
 </html>
