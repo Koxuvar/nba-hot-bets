@@ -3,7 +3,10 @@ NBA Hot Bets web app is a live NBA Scoreboard, providing odds from the most popu
 This resource is for passionate sportsbetters to simultaneously compare odds of different sportsbooks, to then access that sportsbook immediately to place a bet.
 
 ## FEATURES
-- 
+- Provides full list of NBA games for that day
+- Shows live score of game
+- Upon selecting desired game site will then show all betting websites
+- After selecting desired betting website, user will be routed to corresponding page
 
 ## USER STORY
 - AS A sports better and basketball fan
