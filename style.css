@@ -1,0 +1,168 @@
+.hero-section {
+    background: url("../images/hotbets-header.jpg") 50% no-repeat;
+    background-size: cover;
+    height: 60vh;
+    text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  @media screen and (max-width: 768px) {
+   .hero-section {
+        height: 30vh;
+   }}
+/****************  Navigation ****************/
+ a:link {
+     color: #ffffff;
+     font-weight: 800;
+ }
+
+ a:hover {
+     color: red;
+ }
+a {
+    color: lightgray;
+}
+
+/****************  Todays Games ****************/
+body {
+    background-color: #383A3F;
+}
+
+.grid-container {
+    padding: 15px 15px;
+}
+.teams-container {
+    display:flex;
+    flex-direction: row;
+    justify-content:space-around; 
+    margin-top:10px;
+}
+
+.card {
+     background: #1F2124; 
+     box-shadow: 0 0 20px rgba(0,0,0,0.4);
+     border-radius: 7px;
+     color: white; 
+     align-content: center;
+}
+
+.card:hover{
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.4);
+    transform: translateY(-10px);
+    transition: .5s;
+}
+
+.home-team, .visiting-team {
+    width: 33%;
+    line-height: 0;
+    text-align: center;
+}
+
+.timer-section {
+    width: 33%;
+    text-align: center;
+}
+
+.game-timer {
+    font-size: 1em;
+    text-size-adjust: 10%;
+}
+
+h1, h2, p {
+    font-family: 'Kanit', sans-serif;
+}
+
+/**************** Time Remaining ****************/
+h2 {
+    margin-bottom: 0;
+    color: red;
+}
+
+/****************  Quarter (add to 'FINAL') ****************/
+h3 {
+    font-size: .7em;
+    color: #ffffff;
+}
+
+/****************  Record ****************/
+p {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+h1.team-name {
+    font-size: 2em;
+    font-weight: 700;
+    line-height: 0;
+}
+
+.score {
+    background-color: #000000;
+    font-size: 2em;
+    border-bottom:darkslategrey 1px solid;
+    text-align: center;
+}
+
+/****************  Team Logo ****************/
+img {
+    width: 200px;
+   height: auto;
+   padding: 10px;
+}
+
+.teams-display-container-big{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    text-align: center;
+    color: white;
+}
+
+.big{
+    font-size: 5rem;
+    text-align: center;
+}
+
+.site-container{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.site-name{
+    font-size: 1.75rem;
+    padding: 1rem;
+}
+
+.odds-display{
+    font-size: 1rem;
+    padding: 1rem;
+
+}
+
+#game-period-solo{
+    font-size: 3rem;
+}
+
+table tr, tbody td {
+    color: white;
+    background-color: #383A3F;
+}
+
+tbody td{
+    text-align: left;
+}
+
+h2.odds-display-vteam odds-display {
+        background-color: #000000;
+        font-size: 2em;
+        border-bottom:darkslategrey 1px solid;
+        text-align: center;
+}
